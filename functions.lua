@@ -1,0 +1,235 @@
+local gfx_util = require("gfx_util")
+local math = require("math")
+local spherefonts = require("sphere.assets.fonts")
+local imgui = require("imgui")
+local just = require("just")
+local root = (...):match("(.+)/.-")
+
+local function hitcolor(value, unit)	
+		if value < -0.12 then
+			return {1, 0.1, 0.1, 1}
+		elseif value < -0.0747 then
+			return {1, 0.46, 0.18, 1}
+		elseif value < -0.04 then
+			return {1, 0.72, 0.17, 1}
+		elseif value < -0.016 then
+			return {1, 1, 0.16, 1}
+		elseif value < -0.0027 then
+			return {0.33, 0.87, 1, 1}
+		elseif value <= 0.0027 then
+			return {0.58, 0.9, 1, 1}
+		elseif value <= 0.016 then
+			return {0.33, 0.87, 1, 1}
+		elseif value <= 0.04 then
+			return {1, 1, 0.16, 1}
+		elseif value <= 0.0747 then
+			return {1, 0.72, 0.17, 1}
+		elseif value <= 0.12 then
+			return {1, 0.46, 0.18, 1}
+		else
+			return {1, 0.1, 0.1, 1}
+		end
+end
+
+local function addHitError(playfield, width)
+	playfield:addHitError({
+		transform = playfield:newLaneCenterTransform(playfield.noteskin.unit),
+		x = 0,
+		y = playfield.noteskin.config:get("hiterrorposition") * 1080 / 100,
+		w = width,
+		h = 40,
+		origin = {
+			w = 1,
+			h = 40 * 2,
+			color = {1, 1, 1, 1}
+		},
+		background = {
+			color = {0, 0, 0, 0}
+		},
+		unit = 0.12,
+		color = hitcolor,
+		radius = 1,
+		count = 20,
+	})
+end
+
+local function addPercentProgress(playfield)
+	playfield:add({
+		draw = function(self)
+			local tf = gfx_util.transform(playfield:newLaneCenterTransform(1080))
+			love.graphics.replaceTransform(tf)
+			local minTime = self.game.rhythmModel.timeEngine.minTime
+			if minTime == nil then
+				return
+			end
+			local maxTime = self.game.rhythmModel.timeEngine.maxTime
+			local currentTime = self.game.rhythmModel.timeEngine.currentTime
+			local value = math.floor((currentTime - minTime) * 100 / (maxTime - minTime)) 
+			if value < 0 or value > 99 then
+				love.graphics.setColor(0.85, 0.3, 1, 1)
+			else
+				love.graphics.setColor(0.6, 0.2, 1, 1)
+			end
+			love.graphics.setFont(spherefonts.get(root .. "/Other/Calibri.ttf", 30))
+			gfx_util.printBaseline(
+				tostring(value) .. "%",
+				-540,
+				playfield.noteskin.config:get("progressposition") * 1080 / 100,
+				1080,
+				1,
+				"center"
+			)
+		end
+	})
+end
+
+local function addPercentHealth(playfield)
+	playfield:add({
+		draw = function(self)
+			local tf = gfx_util.transform(playfield:newLaneCenterTransform(1080))
+			love.graphics.replaceTransform(tf)
+			local sshp = self.game.rhythmModel.scoreEngine.scoreSystem.hp
+			if sshp == nil then
+				return
+			end
+			local currentHp = sshp:getCurrent()
+			local maxHp = sshp.max
+			local value = math.ceil(currentHp* 100 / maxHp)
+			if value > 0 then
+				love.graphics.setColor(0, 1, 0, 1)
+			else
+				love.graphics.setColor(0, 0.5, 0, 1)
+			end
+			love.graphics.setFont(spherefonts.get(root .. "/Other/Calibri.ttf", 30))
+			gfx_util.printBaseline(
+				tostring(value) .. "%",
+				-540,
+				playfield.noteskin.config:get("healthposition") * 1080 / 100,
+				1080,
+				1,
+				"center"
+			)
+		end
+	})
+end
+
+local function addDeltaTimeJudgement(playfield)
+	playfield:addDeltaTimeJudgement({
+		x = 0, 
+		y =  playfield.noteskin.config:get("judgementposition") * 2700 / 100, 
+		ox = 0.5, 
+		oy = 0.5,
+		rate = 1,
+		transform = playfield:newLaneCenterTransform(2700),
+		judgements = {
+			"Judgements/Miss.png",
+			-0.12,
+			"Judgements/NotPerfect3.png",
+			-0.0747,
+			"Judgements/NotPerfect2.png",
+			-0.04,
+			"Judgements/NotPerfect1.png",
+			-0.016,
+			"Judgements/Perfect.png",
+			-0.0027,
+			"Judgements/Perfectg.png",
+			0.0027,
+			"Judgements/Perfect.png",
+			0.016,
+			"Judgements/NotPerfect1.png",
+			0.04,
+			"Judgements/NotPerfect2.png",
+			0.0747,
+			"Judgements/NotPerfect3.png",
+			0.12,
+			"Judgements/Miss.png",
+		}
+	})
+end
+
+local function addCombo(playfield)
+	playfield:addCombo({
+		x = -540,
+		baseline = playfield.noteskin.config:get("comboposition") * 1080 / 100,
+		limit = 1080,
+		align = "center",
+		font = {
+			filename = root .. "/Other/Calibri.ttf",
+			size = 150
+		},
+		transform = playfield:newLaneCenterTransform(1080),
+		color = {1, 1, 1, 1},
+	})
+end
+
+local function addConfigIntroduce()
+	just.indent(15)
+	just.text("Grey Blue Mania v2")
+	just.indent(15)
+	just.text("Skin by KLV")
+end
+
+local function addConfigBaseSettings(data)
+	just.indent(15)
+	data.hitposition = imgui.slider1("hitposition", data.hitposition, "%d", 1, 100, 1, "Hit position")
+	just.indent(15)
+	data.columnsize = imgui.slider1("columnsize", data.columnsize, "%d", 1, 100, 1, "Column size")
+	just.indent(15)
+	data.playfieldblackout = imgui.slider1("playfieldblackout", data.playfieldblackout, "%d", 1, 100, 1, "Playfield blackout")
+	just.indent(15)
+	data.pinknotes = imgui.checkbox("pinknotes", data.pinknotes, "Pink notes")
+	just.indent(15)
+	data.judgement = imgui.checkbox("judgement", data.judgement, "Judgement")
+	just.indent(15)
+	data.judgementposition = imgui.slider1("judgementposition", data.judgementposition, "%d", 1, 100, 1, "Judgement position")
+	just.indent(15)
+	data.hiterror = imgui.checkbox("hiterror", data.hiterror, "HitError")
+	just.indent(15)
+	data.hiterrorposition = imgui.slider1("hiterrorposition", data.hiterrorposition, "%d", 1, 100, 1, "HitError position")
+	just.indent(15)
+	data.combo = imgui.checkbox("combo", data.combo, "Combo")
+	just.indent(15)
+	data.comboposition = imgui.slider1("comboposition", data.comboposition, "%d", 1, 100, 1, "Combo position")
+	just.indent(15)
+	data.progress = imgui.checkbox("progress", data.progress, "Progress")
+	just.indent(15)
+	data.progressposition = imgui.slider1("progressposition", data.progressposition, "%d", 1, 100, 1, "Progress position")
+	just.indent(15)
+	data.health = imgui.checkbox("health", data.health, "Health")
+	just.indent(15)
+	data.healthposition = imgui.slider1("healthposition", data.healthposition, "%d", 1, 100, 1, "Health position")
+	just.indent(15)
+	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
+	just.indent(15)
+	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
+end
+
+local function setTextures(noteskin)
+	noteskin:setTextures({
+		{greyshortnote = "Notes/GreyShortNote.png"},
+		{greylongnote = "Notes/GreyLongNote.png"},
+		{greylongnotebody = "Notes/GreyLongNoteBody.png"},
+		{blueshortnote = "Notes/BlueShortNote.png"},
+		{bluelongnote = "Notes/BlueLongNote.png"},
+		{bluelongnotebody = "Notes/BlueLongNoteBody.png"},
+		{pinkshortnote = "Notes/PinkShortNote.png"},
+		{pinklongnote = "Notes/PinkLongNote.png"},
+		{pinklongnotebody = "Notes/PinkLongNoteBody.png"},
+		{longredshortnote = "Notes/LongRedShortNote.png"},
+		{longredlongnote = "Notes/LongRedLongNote.png"},
+		{longredlongnotebody = "Notes/LongRedLongNoteBody.png"},
+	})
+end
+
+local functions = {
+	addHitError = addHitError,
+	addPercentProgress = addPercentProgress,
+	addPercentHealth = addPercentHealth,
+	addDeltaTimeJudgement = addDeltaTimeJudgement,
+	addCombo = addCombo,
+	addConfigIntroduce = addConfigIntroduce,
+	addConfigBaseSettings = addConfigBaseSettings,
+	setTextures = setTextures,
+}
+
+return functions
