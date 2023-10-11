@@ -7,7 +7,7 @@ local config = JustConfig:fromFile(root .. "/8key.config.lua")
 local functions = require(root .. "/functions")
 
 local noteskin = NoteSkinVsrg({
-	name = "GBMania v2",
+	name = "Absolute Zero",
 	inputMode = "8key",
 	range = {-1, 1},
 	unit = 1080,

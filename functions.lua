@@ -164,7 +164,7 @@ end
 
 local function addConfigIntroduce()
 	just.indent(15)
-	just.text("Grey Blue Mania v2")
+	just.text("Absolute Zero")
 	just.indent(15)
 	just.text("Skin by KLV")
 end
