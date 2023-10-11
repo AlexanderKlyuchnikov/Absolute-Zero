@@ -4,7 +4,7 @@ local JustConfig = require("sphere.JustConfig")
 
 local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/Configs/6key.config.lua")
-local functions = require(root .. "/functions")
+local functions = require(root .. "/Modules/functions")
 
 local noteskin = NoteSkinVsrg({
 	name = "Absolute Zero",
