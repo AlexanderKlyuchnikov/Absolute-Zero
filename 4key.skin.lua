@@ -3,7 +3,7 @@ local BasePlayfield = require("sphere.models.NoteSkinModel.BasePlayfield")
 local JustConfig = require("sphere.JustConfig")
 
 local root = (...):match("(.+)/.-")
-local config = JustConfig:fromFile(root .. "/4key.config.lua")
+local config = JustConfig:fromFile(root .. "/Configs/4key.config.lua")
 local functions = require(root .. "/functions")
 
 local noteskin = NoteSkinVsrg({
