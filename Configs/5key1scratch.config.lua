@@ -22,10 +22,13 @@ config.data = --[[data]] {
 	middleline = false,
 	pinknotes = true,
 	playfieldblackout = 100,
+	primarycolour = "white",
 	progress = true,
 	progressposition = 50,
+	scratchcolour = "red",
 	scratchline = true,
 	scratchright = true,
+	secondarycolour = "blue",
 	stagelight = true
 } --[[/data]]
 

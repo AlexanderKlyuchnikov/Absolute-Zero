@@ -22,8 +22,10 @@ config.data = --[[data]] {
 	middleline = true,
 	pinknotes = false,
 	playfieldblackout = 79,
+	primarycolour = "white",
 	progress = true,
 	progressposition = 50,
+	secondarycolour = "blue",
 	stagelight = true
 } --[[/data]]
 
