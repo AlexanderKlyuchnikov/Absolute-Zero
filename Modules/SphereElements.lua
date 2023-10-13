@@ -1,6 +1,6 @@
 local imgui = require("imgui")
 local just = require("just")
-local root = (...):match("(.+)/.-")
+local root = (...):match("^(.+)/(.-)/(.-)$")
 
 local function addConfigIntroduce()
 	just.indent(15)

@@ -4,15 +4,15 @@ local just = require("just")
 local config = JustConfig()
 config.w = 550
 config.h = 700
-local root = (...):match("(.+)/.-")
-local functions = require(root .. "/functions")
+local root = (...):match("^(.+)/(.-)/(.-)$")
+local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
 	columnsize = 45,
 	combo = true,
 	comboposition = 42,
-	health = false,
+	health = true,
 	healthposition = 65,
 	hiterror = true,
 	hiterrorposition = 55,
@@ -20,7 +20,7 @@ config.data = --[[data]] {
 	judgement = true,
 	judgementposition = 73,
 	middleline = false,
-	pinknotes = false,
+	pinknotes = true,
 	playfieldblackout = 100,
 	progress = true,
 	progressposition = 50,
@@ -30,11 +30,11 @@ config.data = --[[data]] {
 function config:draw(w, h)
 	local data = self.data
 
-	functions.addConfigIntroduce()
+	sphereElements.addConfigIntroduce()
 	just.indent(15)
 	just.text("4key keymode")
 	imgui.setSize(w, h, w / 2, 55)
-	functions.addConfigBaseSettings(data)
+	sphereElements.addConfigBaseSettings(data)
 	
 	imgui.separator()
 	if imgui.button("Write config file", "Write") then

@@ -4,8 +4,8 @@ local just = require("just")
 local config = JustConfig()
 config.w = 550
 config.h = 700
-local root = (...):match("(.+)/.-")
-local functions = require(root .. "/functions")
+local root = (...):match("^(.+)/(.-)/(.-)$")
+local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
@@ -30,11 +30,11 @@ config.data = --[[data]] {
 function config:draw(w, h)
 	local data = self.data
 
-	functions.addConfigIntroduce()
+	sphereElements.addConfigIntroduce()
 	just.indent(15)
 	just.text("1key keymode")
 	imgui.setSize(w, h, w / 2, 55)
-	functions.addConfigBaseSettings(data)
+	sphereElements.addConfigBaseSettings(data)
 	
 	imgui.separator()
 	if imgui.button("Write config file", "Write") then

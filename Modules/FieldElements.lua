@@ -1,7 +1,7 @@
 local gfx_util = require("gfx_util")
 local math = require("math")
 local spherefonts = require("sphere.assets.fonts")
-local root = (...):match("(.+)/.-")
+local root = (...):match("^(.+)/(.-)/(.-)$")
 
 local function addPercentProgress(playfield)
 	playfield:add({

@@ -5,7 +5,8 @@ local ImageView = require("sphere.views.ImageView")
 
 local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/Configs/7key.config.lua")
-local functions = require(root .. "/Modules/functions")
+local sphereElements = require(root .. "/Modules/sphereElements")
+local fieldElements = require(root .. "/Modules/FieldElements")
 
 local noteskin = NoteSkinVsrg({
 	name = "Absolute Zero",
@@ -36,7 +37,7 @@ noteskin:setColumns({
 	upscroll = false,
 })
 
-functions.setTextures(noteskin)
+sphereElements.setTextures(noteskin)
 
 noteskin:setImagesAuto()
 
@@ -217,23 +218,23 @@ playfield:disableCamera()
 playfield:addBaseElements({"score", "accuracy", "match players"})
 
 if config:get("combo") then
-	functions.addCombo(playfield)
+	sphereElements.addCombo(playfield)
 end
 
 if config:get("judgement") then
-	functions.addDeltaTimeJudgement(playfield)
+	sphereElements.addDeltaTimeJudgement(playfield)
 end
 
 if config:get("hiterror") then
-	functions.addHitError(playfield, cs * 7)
+	sphereElements.addHitError(playfield, cs * 7)
 end
 
 if config:get("progress") then
-	functions.addPercentProgress(playfield)
+	fieldElements.addPercentProgress(playfield)
 end
 
 if config:get("health") then
-	functions.addPercentHealth(playfield)
+	fieldElements.addPercentHealth(playfield)
 end
 
 return noteskin
