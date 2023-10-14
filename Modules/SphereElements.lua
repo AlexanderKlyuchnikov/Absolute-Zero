@@ -3,6 +3,7 @@ local just = require("just")
 local root = (...):match("^(.+)/(.-)/(.-)$")
 local configElements = require(root .. "/Modules/ConfigElements")
 local colourset = {"white", "blue", "yellow", "red", "violet", "pink", "orange", "cyan",  "green", "grey", "black"}
+local scratchsideset = {"left", "right"}
 
 local function addConfigIntroduce()
 	just.indent(15)
@@ -11,7 +12,7 @@ local function addConfigIntroduce()
 	just.text("Skin by KLV")
 end
 
-local function addConfigBaseSettings(data)
+local function addBaseSettings(data)
 	just.indent(15)
 	data.hitposition = imgui.slider1("hitposition", data.hitposition, "%d", 1, 100, 1, "Hit position")
 	just.indent(15)
@@ -19,10 +20,26 @@ local function addConfigBaseSettings(data)
 	just.indent(15)
 	data.playfieldblackout = imgui.slider1("playfieldblackout", data.playfieldblackout, "%d", 1, 100, 1, "Playfield blackout")
 	just.indent(15)
+end
+
+local function addSratchsideSettings(data)
+	data.scratchside = configElements.StringStepper("scratchside", data.scratchside, scratchsideset, "Scratch side")
+	just.indent(15)
+end
+
+local function addColourSettings(data)
 	data.primarycolour = configElements.StringStepper("primarycolour", data.primarycolour, colourset, "Primary colour")
 	just.indent(15)
 	data.secondarycolour = configElements.StringStepper("secondarycolour", data.secondarycolour, colourset, "Secondary colour")
 	just.indent(15)
+end
+
+local function addScratchColourSettings(data)
+	data.scratchcolour = configElements.StringStepper("scratchcolour", data.scratchcolour, colourset, "Scratch colour")
+	just.indent(15)
+end
+
+local function addPlayfieldElementsSettings(data)
 	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
 	just.indent(15)
 	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
@@ -46,6 +63,20 @@ local function addConfigBaseSettings(data)
 	data.health = imgui.checkbox("health", data.health, "Health")
 	just.indent(15)
 	data.healthposition = imgui.slider1("healthposition", data.healthposition, "%d", 1, 100, 1, "Health position")
+end
+
+local function addConfigBaseSettings(data)
+	addBaseSettings(data)
+	addColourSettings(data)
+	addPlayfieldElementsSettings(data)
+end
+
+local function addConfigScratchSettings(data)
+	addBaseSettings(data)
+	addSratchsideSettings(data)
+	addColourSettings(data)
+	addScratchColourSettings(data)
+	addPlayfieldElementsSettings(data)
 end
 
 local function setTextures(noteskin)
@@ -168,6 +199,7 @@ local functions = {
 	addCombo = addCombo,
 	addConfigIntroduce = addConfigIntroduce,
 	addConfigBaseSettings = addConfigBaseSettings,
+	addConfigScratchSettings = addConfigScratchSettings,
 	setTextures = setTextures,
 }
 
