@@ -27,7 +27,7 @@ config.data = --[[data]] {
 	progressposition = 50,
 	scratchcolour = "red",
 	scratchline = true,
-	scratchright = false,
+	scratchside = "left",
 	secondarycolour = "blue",
 	stagelight = true
 } --[[/data]]
@@ -39,12 +39,7 @@ function config:draw(w, h)
 	just.indent(15)
 	just.text("7key1scratch keymode")
 	imgui.setSize(w, h, w / 2, 55)
-	sphereElements.addConfigBaseSettings(data)
-	
-	just.indent(15)
-	data.scratchright = imgui.checkbox("scratchright", data.scratchright, "Scratch on the right side")
-	just.indent(15)
-	data.scratchline = imgui.checkbox("scratchline", data.scratchline, "Scratch line")
+	sphereElements.addConfigScratchSettings(data)
 	
 	imgui.separator()
 	if imgui.button("Write config file", "Write") then

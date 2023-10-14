@@ -30,7 +30,7 @@ noteskin:setInput({
 
 local cs = config:get("columnsize") * noteskin.unit / 400
 
-if config:get("scratchright") then
+if config:get("scratchside") == "right" then
 	noteskin:setColumns({
 		offset = 0,
 		align = "center",
@@ -214,7 +214,7 @@ end
 playfield:addNotes()
 
 --left line
-if config:get("scratchright") then
+if config:get("scratchside") == "right" then
 	playfield:add(ImageView({
 		x = playfield.noteskin.columns[1],
 		y = 0,
@@ -237,7 +237,7 @@ else
 end
 
 --right line
-if config:get("scratchright")then
+if config:get("scratchside") == "right" then
 	playfield:add(ImageView({
 		x = playfield.noteskin.columns[8] + (1.5 * cs),
 		y = 0,
@@ -274,7 +274,7 @@ end
 
 --scratch line
 if config:get("scratchline") then
-	if config:get("scratchright") then
+	if config:get("scratchside") == "right" then
 		playfield:add(ImageView({
 			x = playfield.noteskin.columns[8],
 			y = 0,
