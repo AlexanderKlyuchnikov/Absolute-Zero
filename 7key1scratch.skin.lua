@@ -200,7 +200,7 @@ if config:get("middleline") then
 		y = 0,
 		w = 1,
 		h = noteskin.hitposition,
-		color = {0, 0.3, 0.4, 1},
+		color = textures.colourtable[config:get("secondarycolour")],
 		image = "Other/Pixel.png",
 		transform = playfield:newNoteskinTransform(),
 	}))
@@ -214,7 +214,7 @@ if config:get("scratchline") then
 			y = 0,
 			w = 1,
 			h = noteskin.hitposition,
-			color = {0.75, 0.2, 0, 1},
+			color = textures.colourtable[config:get("scratchcolour")],
 			image = "Other/Pixel.png",
 			transform = playfield:newNoteskinTransform(),
 		}))
@@ -224,7 +224,7 @@ if config:get("scratchline") then
 			y = 0,
 			w = 1,
 			h = noteskin.hitposition,
-			color = {0.75, 0.2, 0, 1},
+			color = textures.colourtable[config:get("scratchcolour")],
 			image = "Other/Pixel.png",
 			transform = playfield:newNoteskinTransform(),
 		}))

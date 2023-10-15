@@ -124,7 +124,7 @@ if config:get("middleline") then
 		w = {0, 0, 1, 0, 0},
 		h = {0, 0, noteskin.hitposition, 0, 0},
 		image = "Other/Pixel.png",
-		color = {0, 0.3, 0.4, 1},
+		color = textures.colourtable[config:get("secondarycolour")],
 		both = false,
 		mode = "default",
 	})

@@ -146,7 +146,7 @@ if config:get("middleline") then
 		y = 0,
 		w = 1,
 		h = noteskin.hitposition,
-		color = {0, 0.3, 0.4, 1},
+		color = textures.colourtable[config:get("secondarycolour")],
 		image = "Other/Pixel.png",
 		transform = playfield:newNoteskinTransform(),
 	}))
