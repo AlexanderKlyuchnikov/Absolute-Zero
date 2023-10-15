@@ -184,6 +184,21 @@ local pressedkeycolour =
 	black = "Keys/PressedBlackKey.png"
 }
 
+local colourtable =
+{
+	white = {0.5, 0.5, 0.5, 1},
+	blue = {0.04, 0.23, 0.5, 1},
+	yellow = {0.5, 0.5, 0, 1},
+	red = {0.5, 0, 0, 1},
+	violet = {0.2, 0, 0.5, 1},
+	pink = {0.4, 0, 0.5, 1},
+	orange = {0.5, 0.23, 0, 1},
+	cyan = {0, 0.5, 0.5, 1},
+	green = {0, 0.5, 0, 1},
+	grey = {0.15, 0.15, 0.15, 1},
+	black = {0, 0, 0, 1}
+}
+
 local colourmap =
 {
     setTextures = setTextures,
@@ -193,7 +208,8 @@ local colourmap =
     longcolourshortnote = longcolourshortnote,
     longcolourlongnote = longcolourlongnote,
     longcolourlongnotebody = longcolourlongnotebody,
-    pressedkeycolour = pressedkeycolour
+    pressedkeycolour = pressedkeycolour,
+	colourtable = colourtable
 }
 
 return colourmap
