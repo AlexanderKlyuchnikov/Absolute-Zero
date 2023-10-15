@@ -34,6 +34,11 @@ local function addColourSettings(data)
 	just.indent(15)
 end
 
+local function addSingleColourSettings(data)
+	data.primarycolour = configElements.StringStepper("primarycolour", data.primarycolour, colourset, "Primary colour")
+	just.indent(15)
+end
+
 local function addScratchColourSettings(data)
 	data.scratchcolour = configElements.StringStepper("scratchcolour", data.scratchcolour, colourset, "Scratch colour")
 	just.indent(15)
@@ -71,93 +76,18 @@ local function addConfigBaseSettings(data)
 	addPlayfieldElementsSettings(data)
 end
 
+local function addConfig1keySettings(data)
+	addBaseSettings(data)
+	addSingleColourSettings(data)
+	addPlayfieldElementsSettings(data)
+end
+
 local function addConfigScratchSettings(data)
 	addBaseSettings(data)
 	addSratchsideSettings(data)
 	addColourSettings(data)
 	addScratchColourSettings(data)
 	addPlayfieldElementsSettings(data)
-end
-
-local function setTextures(noteskin)
-	noteskin:setTextures({
-		{whiteshortnote = "Notes/WhiteShortNote.png"},
-		{whitelongnote = "Notes/WhiteLongNote.png"},
-		{whitelongnotebody = "Notes/WhiteLongNoteBody.png"},
-		{longwhiteshortnote = "Notes/LongWhiteShortNote.png"},
-		{longwhitelongnote = "Notes/LongWhiteLongNote.png"},
-		{longwhitelongnotebody = "Notes/LongWhiteLongNoteBody.png"},
-
-		{blueshortnote = "Notes/BlueShortNote.png"},
-		{bluelongnote = "Notes/BlueLongNote.png"},
-		{bluelongnotebody = "Notes/BlueLongNoteBody.png"},
-		{longblueshortnote = "Notes/LongBlueShortNote.png"},
-		{longbluelongnote = "Notes/LongBlueLongNote.png"},
-		{longbluelongnotebody = "Notes/LongBlueLongNoteBody.png"},
-
-		{yellowshortnote = "Notes/YellowShortNote.png"},
-		{yellowlongnote = "Notes/YellowLongNote.png"},
-		{yellowlongnotebody = "Notes/YellowLongNoteBody.png"},
-		{longyellowshortnote = "Notes/LongYellowShortNote.png"},
-		{longyellowlongnote = "Notes/LongYellowLongNote.png"},
-		{longyellowlongnotebody = "Notes/LongYellowLongNoteBody.png"},
-
-		{redshortnote = "Notes/RedShortNote.png"},
-		{redlongnote = "Notes/RedLongNote.png"},
-		{redlongnotebody = "Notes/RedLongNoteBody.png"},
-		{longredshortnote = "Notes/LongRedShortNote.png"},
-		{longredlongnote = "Notes/LongRedLongNote.png"},
-		{longredlongnotebody = "Notes/LongRedLongNoteBody.png"},
-
-		{violetshortnote = "Notes/VioletShortNote.png"},
-		{violetlongnote = "Notes/VioletLongNote.png"},
-		{violetlongnotebody = "Notes/VioletLongNoteBody.png"},
-		{longvioletshortnote = "Notes/LongVioletShortNote.png"},
-		{longvioletlongnote = "Notes/LongVioletLongNote.png"},
-		{longvioletlongnotebody = "Notes/LongVioletLongNoteBody.png"},
-
-		{pinkshortnote = "Notes/PinkShortNote.png"},
-		{pinklongnote = "Notes/PinkLongNote.png"},
-		{pinklongnotebody = "Notes/PinkLongNoteBody.png"},
-		{longpinkshortnote = "Notes/LongPinkShortNote.png"},
-		{longpinklongnote = "Notes/LongPinkLongNote.png"},
-		{longpinklongnotebody = "Notes/LongPinkLongNoteBody.png"},
-
-		{orangeshortnote = "Notes/OrangeShortNote.png"},
-		{orangelongnote = "Notes/OrangeLongNote.png"},
-		{orangelongnotebody = "Notes/OrangeLongNoteBody.png"},
-		{longorangeshortnote = "Notes/LongOrangeShortNote.png"},
-		{longorangelongnote = "Notes/LongOrangeLongNote.png"},
-		{longorangelongnotebody = "Notes/LongOrangeLongNoteBody.png"},
-
-		{cyanshortnote = "Notes/CyanShortNote.png"},
-		{cyanlongnote = "Notes/CyanLongNote.png"},
-		{cyanlongnotebody = "Notes/CyanLongNoteBody.png"},
-		{longcyanshortnote = "Notes/LongCyanShortNote.png"},
-		{longcyanlongnote = "Notes/LongCyanLongNote.png"},
-		{longcyanlongnotebody = "Notes/LongCyanLongNoteBody.png"},
-
-		{greenshortnote = "Notes/GreenShortNote.png"},
-		{greenlongnote = "Notes/GreenLongNote.png"},
-		{greenlongnotebody = "Notes/GreenLongNoteBody.png"},
-		{longgreenshortnote = "Notes/LongGreenShortNote.png"},
-		{longgreenlongnote = "Notes/LongGreenLongNote.png"},
-		{longgreenlongnotebody = "Notes/LongGreenLongNoteBody.png"},
-
-		{greyshortnote = "Notes/GreyShortNote.png"},
-		{greylongnote = "Notes/GreyLongNote.png"},
-		{greylongnotebody = "Notes/GreyLongNoteBody.png"},
-		{longgreyshortnote = "Notes/LongGreyShortNote.png"},
-		{longgreylongnote = "Notes/LongGreyLongNote.png"},
-		{longgreylongnotebody = "Notes/LongGreyLongNoteBody.png"},
-
-		{blackshortnote = "Notes/BlackShortNote.png"},
-		{blacklongnote = "Notes/BlackLongNote.png"},
-		{blacklongnotebody = "Notes/BlackLongNoteBody.png"},
-		{longblackshortnote = "Notes/LongBlackShortNote.png"},
-		{longblacklongnote = "Notes/LongBlackLongNote.png"},
-		{longblacklongnotebody = "Notes/LongBlackLongNoteBody.png"},
-	})
 end
 
 local function addDeltaTimeJudgement(playfield)
@@ -264,7 +194,7 @@ local functions = {
 	addConfigIntroduce = addConfigIntroduce,
 	addConfigBaseSettings = addConfigBaseSettings,
 	addConfigScratchSettings = addConfigScratchSettings,
-	setTextures = setTextures,
+	addConfig1keySettings = addConfig1keySettings
 }
 
 return functions

@@ -20,7 +20,6 @@ config.data = --[[data]] {
 	judgement = true,
 	judgementposition = 73,
 	middleline = false,
-	pinknotes = true,
 	playfieldblackout = 70,
 	primarycolour = "white",
 	progress = true,

@@ -9,7 +9,7 @@ local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
-	columnsize = 46,
+	columnsize = 82,
 	combo = true,
 	comboposition = 42,
 	health = true,
@@ -19,13 +19,11 @@ config.data = --[[data]] {
 	hitposition = 95,
 	judgement = true,
 	judgementposition = 73,
-	middleline = true,
-	pinknotes = false,
+	middleline = false,
 	playfieldblackout = 100,
-	primarycolour = "white",
+	primarycolour = "orange",
 	progress = true,
 	progressposition = 50,
-	secondarycolour = "blue",
 	stagelight = true
 } --[[/data]]
 
@@ -36,7 +34,7 @@ function config:draw(w, h)
 	just.indent(15)
 	just.text("1key keymode")
 	imgui.setSize(w, h, w / 2, 55)
-	sphereElements.addConfigBaseSettings(data)
+	sphereElements.addConfig1keySettings(data)
 	
 	imgui.separator()
 	if imgui.button("Write config file", "Write") then

@@ -20,12 +20,11 @@ config.data = --[[data]] {
 	judgement = true,
 	judgementposition = 73,
 	middleline = true,
-	pinknotes = false,
-	playfieldblackout = 79,
-	primarycolour = "white",
+	playfieldblackout = 100,
+	primarycolour = "blue",
 	progress = true,
 	progressposition = 50,
-	secondarycolour = "blue",
+	secondarycolour = "grey",
 	stagelight = true
 } --[[/data]]
 

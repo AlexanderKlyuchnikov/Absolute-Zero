@@ -7,6 +7,7 @@ local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/Configs/1key.config.lua")
 local sphereElements = require(root .. "/Modules/SphereElements")
 local fieldElements = require(root .. "/Modules/FieldElements")
+local textures = require(root .. "/Modules/Textures")
 
 local noteskin = NoteSkinVsrg({
 	name = "Absolute Zero",
@@ -31,49 +32,29 @@ noteskin:setColumns({
 	upscroll = false,
 })
 
-sphereElements.setTextures(noteskin)
+textures.setTextures(noteskin)
 
 noteskin:setImagesAuto()
 
-if config:get("pinknotes") then
-	noteskin:setShortNote({
-		image = {
-			"pinkshortnote",
-		},
-		h = cs / 4,
-	})
-	noteskin:setLongNote({
-		head = {
-			"pinklongnote",
-		},
-		body = {
-			"pinklongnotebody",
-		},
-		tail = {
-			"pinklongnote",
-		},
-		h = 1,
-	})
-else
-	noteskin:setShortNote({
-		image = {
-			"blueshortnote",
-		},
-		h = cs / 4,
-	})
-	noteskin:setLongNote({
-		head = {
-			"bluelongnote",
-		},
-		body = {
-			"bluelongnotebody",
-		},
-		tail = {
-			"bluelongnote",
-		},
-		h = 1,
-	})
-end
+noteskin:setShortNote({
+	image = {
+		textures.colourshortnote[config:get("primarycolour")],
+	},
+	h = cs / 4,
+})
+
+noteskin:setLongNote({
+	head = {
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	body = {
+		textures.colourlongnotebody[config:get("primarycolour")],
+	},
+	tail = {
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	h = 1,
+})
 
 local playfield = BasePlayfield(noteskin)
 
@@ -96,23 +77,13 @@ playfield:addStaticKeyImages({
 })
 
 if config:get("stagelight") then
-	if config:get("pinknotes") then
-		playfield:addKeyImages({
-			h = noteskin.unit,
-			padding = noteskin.unit - noteskin.hitposition,
-			pressed = {
-				"Keys/PressedPinkKey.png",
-			},
-		})
-	else
-		playfield:addKeyImages({
-			h = noteskin.unit,
-			padding = noteskin.unit - noteskin.hitposition,
-			pressed = {
-				"Keys/PressedBlueKey.png",
-			},
-		})
-	end
+	playfield:addKeyImages({
+		h = noteskin.unit,
+		padding = noteskin.unit - noteskin.hitposition,
+		pressed = {
+			textures.pressedkeycolour[config:get("primarycolour")],
+		},
+	})
 end
 
 playfield:addNotes()

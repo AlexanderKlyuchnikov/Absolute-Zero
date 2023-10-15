@@ -6,6 +6,7 @@ local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/Configs/4key.config.lua")
 local sphereElements = require(root .. "/Modules/sphereElements")
 local fieldElements = require(root .. "/Modules/FieldElements")
+local textures = require(root .. "/Modules/Textures")
 
 local noteskin = NoteSkinVsrg({
 	name = "Absolute Zero",
@@ -33,75 +34,41 @@ noteskin:setColumns({
 	upscroll = false,
 })
 
-sphereElements.setTextures(noteskin)
+textures.setTextures(noteskin)
 
 noteskin:setImagesAuto()
 
-if config:get("pinknotes") then
-	noteskin:setShortNote({
-		image = {
-			"greyshortnote",
-			"pinkshortnote",
-			"pinkshortnote",
-			"greyshortnote",
-		},
-		h = cs / 4,
-	})
+noteskin:setShortNote({
+	image = {
+		textures.colourshortnote[config:get("primarycolour")],
+		textures.colourshortnote[config:get("secondarycolour")],
+		textures.colourshortnote[config:get("secondarycolour")],
+		textures.colourshortnote[config:get("primarycolour")],
+	},
+	h = cs / 4,
+})
 
-	noteskin:setLongNote({
-		head = {
-			"greylongnote",
-			"pinklongnote",
-			"pinklongnote",
-			"greylongnote",
-		},
-		body = {
-			"greylongnotebody",
-			"pinklongnotebody",
-			"pinklongnotebody",
-			"greylongnotebody",
-		},
-		tail = {
-			"greylongnote",
-			"pinklongnote",
-			"pinklongnote",
-			"greylongnote",
-		},
-		h = 1,
-	})
-else
-	noteskin:setShortNote({
-		image = {
-			"greyshortnote",
-			"blueshortnote",
-			"blueshortnote",
-			"greyshortnote",
-		},
-		h = cs / 4,
-	})
-
-	noteskin:setLongNote({
-		head = {
-			"greylongnote",
-			"bluelongnote",
-			"bluelongnote",
-			"greylongnote",
-		},
-		body = {
-			"greylongnotebody",
-			"bluelongnotebody",
-			"bluelongnotebody",
-			"greylongnotebody",
-		},
-		tail = {
-			"greylongnote",
-			"bluelongnote",
-			"bluelongnote",
-			"greylongnote",
-		},
-		h = 1,
-	})
-end
+noteskin:setLongNote({
+	head = {
+		textures.colourlongnote[config:get("primarycolour")],
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	body = {
+		textures.colourlongnotebody[config:get("primarycolour")],
+		textures.colourlongnotebody[config:get("secondarycolour")],
+		textures.colourlongnotebody[config:get("secondarycolour")],
+		textures.colourlongnotebody[config:get("primarycolour")],
+	},
+	tail = {
+		textures.colourlongnote[config:get("primarycolour")],
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	h = 1,
+})
 
 local playfield = BasePlayfield(noteskin)
 
@@ -127,29 +94,16 @@ playfield:addStaticKeyImages({
 })
 
 if config:get("stagelight") then
-	if config:get("pinknotes") then
-		playfield:addKeyImages({
+	playfield:addKeyImages({
 		h = noteskin.unit,
 		padding = noteskin.unit - noteskin.hitposition,
 		pressed = {
-			"Keys/PressedGreyKey.png",
-			"Keys/PressedPinkKey.png",
-			"Keys/PressedPinkKey.png",
-			"Keys/PressedGreyKey.png",
+			textures.pressedkeycolour[config:get("primarycolour")],
+			textures.pressedkeycolour[config:get("secondarycolour")],
+			textures.pressedkeycolour[config:get("secondarycolour")],
+			textures.pressedkeycolour[config:get("primarycolour")],
 		},
 	})
-	else
-		playfield:addKeyImages({
-		h = noteskin.unit,
-		padding = noteskin.unit - noteskin.hitposition,
-		pressed = {
-			"Keys/PressedGreyKey.png",
-			"Keys/PressedBlueKey.png",
-			"Keys/PressedBlueKey.png",
-			"Keys/PressedGreyKey.png",
-		},
-	})
-	end
 end
 
 playfield:addNotes()

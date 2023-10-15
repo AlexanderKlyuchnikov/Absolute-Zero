@@ -6,6 +6,7 @@ local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/Configs/2key.config.lua")
 local sphereElements = require(root .. "/Modules/sphereElements")
 local fieldElements = require(root .. "/Modules/FieldElements")
+local textures = require(root .. "/Modules/Textures")
 
 local noteskin = NoteSkinVsrg({
 	name = "Absolute Zero",
@@ -31,59 +32,33 @@ noteskin:setColumns({
 	upscroll = false,
 })
 
-sphereElements.setTextures(noteskin)
+textures.setTextures(noteskin)
 
 noteskin:setImagesAuto()
 
-if config:get("pinknotes") then
-	noteskin:setShortNote({
-		image = {
-			"pinkshortnote",
-			"greyshortnote",
-		},
-		h = cs / 4,
-	})
+noteskin:setShortNote({
+	image = {
+		textures.colourshortnote[config:get("secondarycolour")],
+		textures.colourshortnote[config:get("primarycolour")],
+	},
+	h = cs / 4,
+})
 
-	noteskin:setLongNote({
-		head = {
-			"pinklongnote",
-			"greylongnote",
-		},
-		body = {
-			"pinklongnotebody",
-			"greylongnotebody",
-		},
-		tail = {
-			"pinklongnote",
-			"greylongnote",
-		},
-		h = 1,
-	})
-else
-	noteskin:setShortNote({
-		image = {
-			"blueshortnote",
-			"greyshortnote",
-		},
-		h = cs / 4,
-	})
-
-	noteskin:setLongNote({
-		head = {
-			"bluelongnote",
-			"greylongnote",
-		},
-		body = {
-			"bluelongnotebody",
-			"greylongnotebody",
-		},
-		tail = {
-			"bluelongnote",
-			"greylongnote",
-		},
-		h = 1,
-	})
-end
+noteskin:setLongNote({
+	head = {
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	body = {
+		textures.colourlongnotebody[config:get("secondarycolour")],
+		textures.colourlongnotebody[config:get("primarycolour")],
+	},
+	tail = {
+		textures.colourlongnote[config:get("secondarycolour")],
+		textures.colourlongnote[config:get("primarycolour")],
+	},
+	h = 1,
+})
 
 local playfield = BasePlayfield(noteskin)
 
@@ -107,25 +82,14 @@ playfield:addStaticKeyImages({
 })
 
 if config:get("stagelight") then
-	if config:get("pinknotes") then
-		playfield:addKeyImages({
-			h = noteskin.unit,
-			padding = noteskin.unit - noteskin.hitposition,
-			pressed = {
-				"Keys/PressedPinkKey.png",
-				"Keys/PressedGreyKey.png",
-			},
-		})
-	else
-		playfield:addKeyImages({
-			h = noteskin.unit,
-			padding = noteskin.unit - noteskin.hitposition,
-			pressed = {
-				"Keys/PressedBlueKey.png",
-				"Keys/PressedGreyKey.png",
-			},
-		})
-	end
+	playfield:addKeyImages({
+		h = noteskin.unit,
+		padding = noteskin.unit - noteskin.hitposition,
+		pressed = {
+			textures.pressedkeycolour[config:get("secondarycolour")],
+			textures.pressedkeycolour[config:get("primarycolour")],
+		},
+	})
 end
 
 playfield:addNotes()
