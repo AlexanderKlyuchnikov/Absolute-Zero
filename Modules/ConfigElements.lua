@@ -1,8 +1,13 @@
 local just = require("just")
+local imgui = require("imgui")
 local TextCellImView = require("sphere.imviews.TextCellImView")
 local StepperView = require("sphere.views.StepperView")
 local spherefonts = require("sphere.assets.fonts")
 local gfx_util = require("gfx_util")
+local math_util = require("math_util")
+
+local _w = 550 / 2
+local _h = 55
 
 local function StringStepper(id, value, valset, label)
 
@@ -48,9 +53,35 @@ local function StringStepper(id, value, valset, label)
     return result
 end
 
+---@param id any
+---@param v number
+---@param format string
+---@param a number
+---@param b number
+---@param c number
+---@param label string?
+---@return number
+local function Cutslider(id, v, format, a, b, c, label)
+	local delta = just.wheel_over(id, just.is_over(_w, _h))
+	if delta then
+		v = math.min(math.max(v + c * delta, a), b)
+	end
+
+	local _v = math_util.map(v, a, b, 0, 1)
+	local dispval = format:format(v)
+	_v = imgui.Slider(id, _v, _w, _h, string.sub(dispval, 0, #dispval - 5)) or _v
+	just.sameline()
+	imgui.label(id .. "label", label)
+
+	v = math_util.map(_v, 0, 1, a, b)
+	v = math_util.round(v, c)
+
+	return v
+end
 local configElements =
 {
-    StringStepper = StringStepper
+    StringStepper = StringStepper,
+	Cutslider = Cutslider
 }
 
 return configElements
