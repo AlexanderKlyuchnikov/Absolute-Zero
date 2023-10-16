@@ -117,21 +117,25 @@ local function addDeltaTimeJudgement(playfield)
 			"Judgements/Miss.png",
 			-0.12,
 			"Judgements/NotPerfect3.png",
-			-0.0747,
+			-0.085,
 			"Judgements/NotPerfect2.png",
-			-0.04,
+			-0.056,
 			"Judgements/NotPerfect1.png",
+			-0.033,
+			"Judgements/PerfectQ.png",
 			-0.016,
 			"Judgements/Perfect.png",
-			-0.0027,
+			-0.005,
 			"Judgements/Perfectg.png",
-			0.0027,
+			0.005,
 			"Judgements/Perfect.png",
 			0.016,
+			"Judgements/PerfectQ.png",
+			0.033,
 			"Judgements/NotPerfect1.png",
-			0.04,
+			0.056,
 			"Judgements/NotPerfect2.png",
-			0.0747,
+			0.085,
 			"Judgements/NotPerfect3.png",
 			0.12,
 			"Judgements/Miss.png",
@@ -157,21 +161,25 @@ end
 local function hitcolor(value, unit)	
     if value < -0.12 then
         return {1, 0.1, 0.1, 1}
-    elseif value < -0.0747 then
+    elseif value < -0.085 then
         return {1, 0.46, 0.18, 1}
-    elseif value < -0.04 then
+    elseif value < -0.056 then
         return {1, 0.72, 0.17, 1}
-    elseif value < -0.016 then
+	elseif value < -0.033 then
         return {1, 1, 0.16, 1}
-    elseif value < -0.0027 then
+    elseif value < -0.016 then
+        return {0.1, 1, 0.1, 1}
+    elseif value < -0.005 then
         return {0.33, 0.87, 1, 1}
-    elseif value <= 0.0027 then
+    elseif value <= 0.005 then
         return {0.58, 0.9, 1, 1}
     elseif value <= 0.016 then
         return {0.33, 0.87, 1, 1}
-    elseif value <= 0.04 then
+	elseif value < 0.033 then
+        return {0.1, 1, 0.1, 1}
+    elseif value <= 0.056 then
         return {1, 1, 0.16, 1}
-    elseif value <= 0.0747 then
+    elseif value <= 0.085 then
         return {1, 0.72, 0.17, 1}
     elseif value <= 0.12 then
         return {1, 0.46, 0.18, 1}
