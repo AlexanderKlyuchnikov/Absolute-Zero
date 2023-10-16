@@ -19,8 +19,7 @@ config.data = --[[data]] {
 	hitposition = 95,
 	judgement = true,
 	judgementposition = 73,
-	middleline = false,
-	playfieldblackout = 70,
+	playfieldblackout = 100,
 	primarycolour = "white",
 	progress = true,
 	progressposition = 50,
@@ -37,7 +36,7 @@ function config:draw(w, h)
 	just.indent(15)
 	just.text("3key keymode")
 	imgui.setSize(w, h, w / 2, 55)
-	sphereElements.addConfigBaseSettings(data)
+	sphereElements.addConfig23keySettings(data)
 	
 	imgui.separator()
 	if imgui.button("Write config file", "Write") then

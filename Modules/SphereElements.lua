@@ -43,13 +43,8 @@ local function addScratchColourSettings(data)
 	data.scratchcolour = configElements.StringStepper("scratchcolour", data.scratchcolour, colourset, "Scratch colour")
 end
 
-local function addPlayfieldElementsSettings(data)
+local function otherPlayfieldElementsSettings(data)
 	just.indent(15)
-	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
-	just.indent(15)
-	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
-	just.indent(15)
-
 	data.judgement = imgui.checkbox("judgement", data.judgement, "Judgement")
 	if data.judgement then
 		just.indent(15)
@@ -61,6 +56,7 @@ local function addPlayfieldElementsSettings(data)
 	just.indent(15)
 	data.hiterror = imgui.checkbox("hiterror", data.hiterror, "HitError")
 	if data.hiterror then
+		just.indent(15)
 		data.showperfecterror = imgui.checkbox("showperfecterror", data.showperfecterror, "Show perfect")
 		just.indent(15)
 		data.hiterrorposition = configElements.Cutslider("hiterrorposition", data.hiterrorposition, "%f", 0, 100, 0.1, "HitError position")
@@ -88,6 +84,20 @@ local function addPlayfieldElementsSettings(data)
 	end
 end
 
+local function addPlayfieldElementsSettings(data)
+	just.indent(15)
+	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
+	just.indent(15)
+	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
+	otherPlayfieldElementsSettings(data)
+end
+
+local function addPlayfieldElementsSettingsWithoutMiddleLine(data)
+	just.indent(15)
+	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
+	otherPlayfieldElementsSettings(data)
+end
+
 local function addConfigBaseSettings(data)
 	addBaseSettings(data)
 	addColourSettings(data)
@@ -97,7 +107,13 @@ end
 local function addConfig1keySettings(data)
 	addBaseSettings(data)
 	addSingleColourSettings(data)
-	addPlayfieldElementsSettings(data)
+	addPlayfieldElementsSettingsWithoutMiddleLine(data)
+end
+
+local function addConfig23keySettings(data)
+	addBaseSettings(data)
+	addColourSettings(data)
+	addPlayfieldElementsSettingsWithoutMiddleLine(data)
 end
 
 local function addConfigScratchSettings(data)
@@ -250,7 +266,8 @@ local functions = {
 	addConfigIntroduce = addConfigIntroduce,
 	addConfigBaseSettings = addConfigBaseSettings,
 	addConfigScratchSettings = addConfigScratchSettings,
-	addConfig1keySettings = addConfig1keySettings
+	addConfig1keySettings = addConfig1keySettings,
+	addConfig23keySettings = addConfig23keySettings
 }
 
 return functions
