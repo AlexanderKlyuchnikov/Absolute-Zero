@@ -19,32 +19,32 @@ local function addBaseSettings(data)
 	data.columnsize = configElements.Cutslider("columnsize", data.columnsize, "%f", 0, 100, 0.1, "Column size")
 	just.indent(15)
 	data.playfieldblackout = configElements.Cutslider("playfieldblackout", data.playfieldblackout, "%f", 0, 100, 0.1, "Playfield blackout")
-	just.indent(15)
 end
 
 local function addSratchsideSettings(data)
-	data.scratchside = configElements.StringStepper("scratchside", data.scratchside, scratchsideset, "Scratch side")
 	just.indent(15)
+	data.scratchside = configElements.StringStepper("scratchside", data.scratchside, scratchsideset, "Scratch side")
 end
 
 local function addColourSettings(data)
+	just.indent(15)
 	data.primarycolour = configElements.StringStepper("primarycolour", data.primarycolour, colourset, "Primary colour")
 	just.indent(15)
 	data.secondarycolour = configElements.StringStepper("secondarycolour", data.secondarycolour, colourset, "Secondary colour")
-	just.indent(15)
 end
 
 local function addSingleColourSettings(data)
-	data.primarycolour = configElements.StringStepper("primarycolour", data.primarycolour, colourset, "Primary colour")
 	just.indent(15)
+	data.primarycolour = configElements.StringStepper("primarycolour", data.primarycolour, colourset, "Primary colour")
 end
 
 local function addScratchColourSettings(data)
-	data.scratchcolour = configElements.StringStepper("scratchcolour", data.scratchcolour, colourset, "Scratch colour")
 	just.indent(15)
+	data.scratchcolour = configElements.StringStepper("scratchcolour", data.scratchcolour, colourset, "Scratch colour")
 end
 
 local function addPlayfieldElementsSettings(data)
+	just.indent(15)
 	data.stagelight = imgui.checkbox("stagelight", data.stagelight, "Stage light")
 	just.indent(15)
 	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
