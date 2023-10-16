@@ -49,25 +49,40 @@ local function addPlayfieldElementsSettings(data)
 	just.indent(15)
 	data.middleline = imgui.checkbox("middleline", data.middleline, "Middle line")
 	just.indent(15)
+
 	data.judgement = imgui.checkbox("judgement", data.judgement, "Judgement")
-	just.indent(15)
-	data.judgementposition = configElements.Cutslider("judgementposition", data.judgementposition, "%f", 0, 100, 0.1, "Judgement position")
+	if data.judgement then
+		just.indent(15)
+		data.judgementposition = configElements.Cutslider("judgementposition", data.judgementposition, "%f", 0, 100, 0.1, "Judgement position")
+	end
+
 	just.indent(15)
 	data.hiterror = imgui.checkbox("hiterror", data.hiterror, "HitError")
-	just.indent(15)
-	data.hiterrorposition = configElements.Cutslider("hiterrorposition", data.hiterrorposition, "%f", 0, 100, 0.1, "HitError position")
+	if data.hiterror then
+		just.indent(15)
+		data.hiterrorposition = configElements.Cutslider("hiterrorposition", data.hiterrorposition, "%f", 0, 100, 0.1, "HitError position")
+	end
+
 	just.indent(15)
 	data.combo = imgui.checkbox("combo", data.combo, "Combo")
-	just.indent(15)
-	data.comboposition = configElements.Cutslider("comboposition", data.comboposition, "%f", 0, 100, 0.1, "Combo position")
+	if data.combo then
+		just.indent(15)
+		data.comboposition = configElements.Cutslider("comboposition", data.comboposition, "%f", 0, 100, 0.1, "Combo position")	
+	end
+
 	just.indent(15)
 	data.progress = imgui.checkbox("progress", data.progress, "Progress")
-	just.indent(15)
-	data.progressposition = configElements.Cutslider("progressposition", data.progressposition, "%f", 0, 100, 0.1, "Progress position")
+	if data.progress then
+		just.indent(15)
+		data.progressposition = configElements.Cutslider("progressposition", data.progressposition, "%f", 0, 100, 0.1, "Progress position")
+	end
+
 	just.indent(15)
 	data.health = imgui.checkbox("health", data.health, "Health")
-	just.indent(15)
-	data.healthposition = configElements.Cutslider("healthposition", data.healthposition, "%f", 0, 100, 1, "Health position")
+	if data.health then
+		just.indent(15)
+		data.healthposition = configElements.Cutslider("healthposition", data.healthposition, "%f", 0, 100, 1, "Health position")
+	end
 end
 
 local function addConfigBaseSettings(data)
