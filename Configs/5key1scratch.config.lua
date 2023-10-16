@@ -28,6 +28,8 @@ config.data = --[[data]] {
 	scratchline = true,
 	scratchside = "right",
 	secondarycolour = "black",
+	showperfecterror = true,
+	showperfectjudgement = true,
 	stagelight = true
 } --[[/data]]
 

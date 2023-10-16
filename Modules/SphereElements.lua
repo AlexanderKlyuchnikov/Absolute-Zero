@@ -53,12 +53,15 @@ local function addPlayfieldElementsSettings(data)
 	data.judgement = imgui.checkbox("judgement", data.judgement, "Judgement")
 	if data.judgement then
 		just.indent(15)
+		data.showperfectjudgement = imgui.checkbox("showperfectjudgement", data.showperfectjudgement, "Show perfect")
+		just.indent(15)
 		data.judgementposition = configElements.Cutslider("judgementposition", data.judgementposition, "%f", 0, 100, 0.1, "Judgement position")
 	end
 
 	just.indent(15)
 	data.hiterror = imgui.checkbox("hiterror", data.hiterror, "HitError")
 	if data.hiterror then
+		data.showperfecterror = imgui.checkbox("showperfecterror", data.showperfecterror, "Show perfect")
 		just.indent(15)
 		data.hiterrorposition = configElements.Cutslider("hiterrorposition", data.hiterrorposition, "%f", 0, 100, 0.1, "HitError position")
 	end
@@ -107,9 +110,9 @@ end
 
 local function addDeltaTimeJudgement(playfield)
 	playfield:addDeltaTimeJudgement({
-		x = 0, 
-		y =  playfield.noteskin.config:get("judgementposition") * 2700 / 100, 
-		ox = 0.5, 
+		x = 0,
+		y =  playfield.noteskin.config:get("judgementposition") * 2700 / 100,
+		ox = 0.5,
 		oy = 0.5,
 		rate = 1,
 		transform = playfield:newLaneCenterTransform(2700),
@@ -124,11 +127,11 @@ local function addDeltaTimeJudgement(playfield)
 			-0.033,
 			"Judgements/PerfectQ.png",
 			-0.016,
-			"Judgements/Perfect.png",
+			playfield.noteskin.config:get("showperfectjudgement") and "Judgements/Perfect.png" or "Judgements/empty.png",
 			-0.005,
-			"Judgements/Perfectg.png",
+			playfield.noteskin.config:get("showperfectjudgement") and "Judgements/PerfectG.png" or "Judgements/empty.png",
 			0.005,
-			"Judgements/Perfect.png",
+			playfield.noteskin.config:get("showperfectjudgement") and "Judgements/Perfect.png" or "Judgements/empty.png",
 			0.016,
 			"Judgements/PerfectQ.png",
 			0.033,
@@ -188,6 +191,36 @@ local function hitcolor(value, unit)
     end
 end
 
+local function hitcolornoperfect(value, unit)
+	if value < -0.12 then
+        return {1, 0.1, 0.1, 1}
+    elseif value < -0.085 then
+        return {1, 0.46, 0.18, 1}
+    elseif value < -0.056 then
+        return {1, 0.72, 0.17, 1}
+	elseif value < -0.033 then
+        return {1, 1, 0.16, 1}
+    elseif value < -0.016 then
+        return {0.1, 1, 0.1, 1}
+    elseif value < -0.005 then
+        return {0, 0, 0, 0}
+    elseif value <= 0.005 then
+        return {0, 0, 0, 0}
+    elseif value <= 0.016 then
+        return {0, 0, 0, 0}
+	elseif value < 0.033 then
+        return {0.1, 1, 0.1, 1}
+    elseif value <= 0.056 then
+        return {1, 1, 0.16, 1}
+    elseif value <= 0.085 then
+        return {1, 0.72, 0.17, 1}
+    elseif value <= 0.12 then
+        return {1, 0.46, 0.18, 1}
+    else
+        return {1, 0.1, 0.1, 1}
+    end
+end
+
 local function addHitError(playfield, width)
 playfield:addHitError({
     transform = playfield:newLaneCenterTransform(playfield.noteskin.unit),
@@ -204,7 +237,7 @@ playfield:addHitError({
         color = {0, 0, 0, 0}
     },
     unit = 0.12,
-    color = hitcolor,
+    color = playfield.noteskin.config:get("showperfecterror") and hitcolor or hitcolornoperfect,
     radius = 1,
     count = 20,
 })

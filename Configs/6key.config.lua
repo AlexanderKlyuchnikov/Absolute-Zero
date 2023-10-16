@@ -9,10 +9,10 @@ local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
-	columnsize = 38,
+	columnsize = 37,
 	combo = true,
 	comboposition = 42,
-	health = true,
+	health = false,
 	healthposition = 65,
 	hiterror = true,
 	hiterrorposition = 55,
@@ -21,11 +21,13 @@ config.data = --[[data]] {
 	judgementposition = 73,
 	middleline = true,
 	playfieldblackout = 100,
-	primarycolour = "blue",
+	primarycolour = "white",
 	progress = true,
 	progressposition = 50,
-	secondarycolour = "grey",
-	stagelight = true
+	secondarycolour = "blue",
+	showperfecterror = true,
+	showperfectjudgement = true,
+	stagelight = false
 } --[[/data]]
 
 function config:draw(w, h)

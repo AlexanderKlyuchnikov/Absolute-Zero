@@ -24,6 +24,8 @@ config.data = --[[data]] {
 	primarycolour = "orange",
 	progress = true,
 	progressposition = 50,
+	showperfecterror = true,
+	showperfectjudgement = true,
 	stagelight = true
 } --[[/data]]
 
