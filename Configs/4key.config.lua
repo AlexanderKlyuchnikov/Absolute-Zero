@@ -12,7 +12,7 @@ config.data = --[[data]] {
 	columnsize = 44.5,
 	combo = true,
 	comboposition = 42,
-	health = false,
+	health = true,
 	healthposition = 65,
 	hiterror = true,
 	hiterrorposition = 55,
@@ -27,7 +27,7 @@ config.data = --[[data]] {
 	secondarycolour = "blue",
 	showperfecterror = true,
 	showperfectjudgement = true,
-	stagelight = false
+	stagelight = true
 } --[[/data]]
 
 function config:draw(w, h)

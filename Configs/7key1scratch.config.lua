@@ -9,7 +9,7 @@ local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
-	columnsize = 33,
+	columnsize = 31,
 	combo = true,
 	comboposition = 42,
 	health = true,
@@ -19,7 +19,7 @@ config.data = --[[data]] {
 	hitposition = 95,
 	judgement = true,
 	judgementposition = 73,
-	middleline = true,
+	middleline = false,
 	playfieldblackout = 100,
 	primarycolour = "white",
 	progress = true,

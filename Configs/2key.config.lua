@@ -9,7 +9,7 @@ local sphereElements = require(root .. "/Modules/SphereElements")
 
 config.data = --[[data]] {
 	autosave = true,
-	columnsize = 45,
+	columnsize = 44.5,
 	combo = true,
 	comboposition = 42,
 	health = true,
