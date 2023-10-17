@@ -125,6 +125,7 @@ if config:get("stagelight") then
 			textures.pressedkeycolour[config:get("primarycolour")],
 			textures.pressedkeycolour[config:get("secondarycolour")],
 			textures.pressedkeycolour[config:get("primarycolour")],
+			textures.pressedkeycolour[config:get("secondarycolour")],
 			textures.pressedkeycolour[config:get("scratchcolour")],
 		},
 	})
