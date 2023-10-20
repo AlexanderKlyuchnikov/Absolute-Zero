@@ -76,6 +76,27 @@ local function setTextures(noteskin)
 		{longblackshortnote = "Notes/LongBlackShortNote.png"},
 		{longblacklongnote = "Notes/LongBlackLongNote.png"},
 		{longblacklongnotebody = "Notes/LongBlackLongNoteBody.png"},
+
+		{_2to4_WSN_left = "Notes/2to4/_WSN_left.png"},
+		{_2to4_WLN_left = "Notes/2to4/_WLN_left.png"},
+		{_2to4_WLNB_left = "Notes/2to4/_WLNB_left.png"},
+		{_2to4_RSN_left = "Notes/2to4/_RSN_left.png"},
+		{_2to4_RLN_left = "Notes/2to4/_RLN_left.png"},
+		{_2to4_RLNB_left = "Notes/2to4/_RLNB_left.png"},
+
+		{_2to4_WSN_right = "Notes/2to4/_WSN_right.png"},
+		{_2to4_WLN_right = "Notes/2to4/_WLN_right.png"},
+		{_2to4_WLNB_right = "Notes/2to4/_WLNB_right.png"},
+		{_2to4_RSN_right = "Notes/2to4/_RSN_right.png"},
+		{_2to4_RLN_right = "Notes/2to4/_RLN_right.png"},
+		{_2to4_RLNB_right = "Notes/2to4/_RLNB_right.png"},
+
+		{_2to4_WSN_middle = "Notes/2to4/_WSN_middle.png"},
+		{_2to4_WLN_middle = "Notes/2to4/_WLN_middle.png"},
+		{_2to4_WLNB_middle = "Notes/2to4/_WLNB_middle.png"},
+		{_2to4_RSN_middle = "Notes/2to4/_RSN_middle.png"},
+		{_2to4_RLN_middle = "Notes/2to4/_RLN_middle.png"},
+		{_2to4_RLNB_middle = "Notes/2to4/_RLNB_middle.png"},
 	})
 end
 
