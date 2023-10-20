@@ -116,6 +116,11 @@ local function addConfig23keySettings(data)
 	addPlayfieldElementsSettingsWithoutMiddleLine(data)
 end
 
+local function addConfig2to4keySettings(data)
+	addBaseSettings(data)
+	otherPlayfieldElementsSettings(data)
+end
+
 local function addConfigScratchSettings(data)
 	addBaseSettings(data)
 	addSratchsideSettings(data)
@@ -267,7 +272,8 @@ local functions = {
 	addConfigBaseSettings = addConfigBaseSettings,
 	addConfigScratchSettings = addConfigScratchSettings,
 	addConfig1keySettings = addConfig1keySettings,
-	addConfig23keySettings = addConfig23keySettings
+	addConfig23keySettings = addConfig23keySettings,
+	addConfig2to4keySettings = addConfig2to4keySettings
 }
 
 return functions
