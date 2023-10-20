@@ -97,6 +97,20 @@ local function setTextures(noteskin)
 		{_2to4_RSN_middle = "Notes/2to4/_RSN_middle.png"},
 		{_2to4_RLN_middle = "Notes/2to4/_RLN_middle.png"},
 		{_2to4_RLNB_middle = "Notes/2to4/_RLNB_middle.png"},
+
+		{_2to4_WSN_sleft = "Notes/2to4/_WSN_sleft.png"},
+		{_2to4_WLN_sleft = "Notes/2to4/_WLN_sleft.png"},
+		{_2to4_WLNB_sleft = "Notes/2to4/_WLNB_sleft.png"},
+		{_2to4_WSN_sright = "Notes/2to4/_WSN_sright.png"},
+		{_2to4_WLN_sright = "Notes/2to4/_WLN_sright.png"},
+		{_2to4_WLNB_sright = "Notes/2to4/_WLNB_sright.png"},
+
+		{_2to4_RSN_middle_left = "Notes/2to4/_RSN_middle_left.png"},
+		{_2to4_RLN_middle_left = "Notes/2to4/_RLN_middle_left.png"},
+		{_2to4_RLNB_middle_left = "Notes/2to4/_RLNB_middle_left.png"},
+		{_2to4_RSN_middle_right = "Notes/2to4/_RSN_middle_right.png"},
+		{_2to4_RLN_middle_right = "Notes/2to4/_RLN_middle_right.png"},
+		{_2to4_RLNB_middle_right = "Notes/2to4/_RLNB_middle_right.png"},
 	})
 end
 
