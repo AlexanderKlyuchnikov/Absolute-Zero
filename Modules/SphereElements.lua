@@ -2,7 +2,7 @@ local imgui = require("imgui")
 local just = require("just")
 local root = (...):match("^(.+)/(.-)/(.-)$")
 local configElements = require(root .. "/Modules/ConfigElements")
-local colourset = {"white", "blue", "yellow", "red", "violet", "pink", "orange", "cyan",  "green", "grey", "black"}
+local colourset = {"white", "blue", "yellow", "red", "violet", "pink", "orange", "cyan",  "green", "lightgreen", "bluegreen", "grey", "black"}
 local scratchsideset = {"left", "right"}
 
 local function addConfigIntroduce()

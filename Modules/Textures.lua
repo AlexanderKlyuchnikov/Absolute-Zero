@@ -63,6 +63,20 @@ local function setTextures(noteskin)
 		{longgreenlongnote = "Notes/LongGreenLongNote.png"},
 		{longgreenlongnotebody = "Notes/LongGreenLongNoteBody.png"},
 
+		{lightgreenshortnote = "Notes/LightGreenShortNote.png"},
+		{lightgreenlongnote = "Notes/LightGreenLongNote.png"},
+		{lightgreenlongnotebody = "Notes/LightGreenLongNoteBody.png"},
+		{longlightgreenshortnote = "Notes/LongLightGreenShortNote.png"},
+		{longlightgreenlongnote = "Notes/LongLightGreenLongNote.png"},
+		{longlightgreenlongnotebody = "Notes/LongLightGreenLongNoteBody.png"},
+
+		{bluegreenshortnote = "Notes/BlueGreenShortNote.png"},
+		{bluegreenlongnote = "Notes/BlueGreenLongNote.png"},
+		{bluegreenlongnotebody = "Notes/BlueGreenLongNoteBody.png"},
+		{longbluegreenshortnote = "Notes/LongBlueGreenShortNote.png"},
+		{longbluegreenlongnote = "Notes/LongBlueGreenLongNote.png"},
+		{longbluegreenlongnotebody = "Notes/LongBlueGreenLongNoteBody.png"},
+
 		{greyshortnote = "Notes/GreyShortNote.png"},
 		{greylongnote = "Notes/GreyLongNote.png"},
 		{greylongnotebody = "Notes/GreyLongNoteBody.png"},
@@ -132,6 +146,8 @@ local colourshortnote =
 	orange = "orangeshortnote",
 	cyan = "cyanshortnote",
 	green = "greenshortnote",
+	lightgreen = "lightgreenshortnote",
+	bluegreen = "bluegreenshortnote",
 	grey = "greyshortnote",
 	black = "blackshortnote"
 }
@@ -147,6 +163,8 @@ local colourlongnote =
 	orange = "orangelongnote",
 	cyan = "cyanlongnote",
 	green = "greenlongnote",
+	lightgreen = "lightgreenlongnote",
+	bluegreen = "bluegreenlongnote",
 	grey = "greylongnote",
 	black = "blacklongnote"
 }
@@ -162,6 +180,8 @@ local colourlongnotebody =
 	orange = "orangelongnotebody",
 	cyan = "cyanlongnotebody",
 	green = "greenlongnotebody",
+	lightgreen = "lightgreenlongnotebody",
+	bluegreen = "bluegreenlongnotebody",
 	grey = "greylongnotebody",
 	black = "blacklongnotebody"
 }
@@ -177,6 +197,8 @@ local longcolourshortnote =
 	orange = "longorangeshortnote",
 	cyan = "longcyanshortnote",
 	green = "longgreenshortnote",
+	lightgreen = "longlightgreenshortnote",
+	bluegreen = "longbluegreenshortnote",
 	grey = "longgreyshortnote",
 	black = "longblackshortnote"
 }
@@ -192,6 +214,8 @@ local longcolourlongnote =
 	orange = "longorangelongnote",
 	cyan = "longcyanlongnote",
 	green = "longgreenlongnote",
+	lightgreen = "longlightgreenlongnote",
+	bluegreen = "longbluegreenlongnote",
 	grey = "longgreylongnote",
 	black = "longblacklongnote"
 }
@@ -207,6 +231,8 @@ local longcolourlongnotebody =
 	orange = "longorangelongnotebody",
 	cyan = "longcyanlongnotebody",
 	green = "longgreenlongnotebody",
+	lightgreen = "longlightgreenlongnotebody",
+	bluegreen = "longbluegreenlongnotebody",
 	grey = "longgreylongnotebody",
 	black = "longblacklongnotebody"
 }
@@ -222,6 +248,8 @@ local pressedkeycolour =
 	orange = "Keys/PressedOrangeKey.png",
 	cyan = "Keys/PressedCyanKey.png",
 	green = "Keys/PressedGreenKey.png",
+	lightgreen = "Keys/PressedLightGreenKey.png",
+	bluegreen = "Keys/PressedBlueGreenKey.png",
 	grey = "Keys/PressedGreyKey.png",
 	black = "Keys/PressedBlackKey.png"
 }
@@ -237,6 +265,8 @@ local colourtable =
 	orange = {0.5, 0.23, 0, 1},
 	cyan = {0, 0.5, 0.5, 1},
 	green = {0, 0.5, 0, 1},
+	lightgreen = {0.29, 0.5, 0, 1},
+	bluegreen = {0, 0.5, 0.19, 1},
 	grey = {0.15, 0.15, 0.15, 1},
 	black = {0, 0, 0, 1}
 }
